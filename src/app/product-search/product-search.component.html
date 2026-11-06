@@ -1,0 +1,56 @@
+<section class="catalog">
+  <header class="catalog__head">
+    <h1>Catálogo</h1>
+    <label class="searchbar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input type="search" [formControl]="search" placeholder="Buscar producto por nombre" aria-label="Buscar producto por nombre" />
+    </label>
+  </header>
+
+  <div class="filters">
+    <div class="chips" role="group" aria-label="Categoría">
+      @for (c of categories; track c) {
+        <button type="button" class="chip" [class.chip--active]="category.value === c"
+                [attr.aria-pressed]="category.value === c" (click)="selectCategory(c)">{{ c }}</button>
+      }
+    </div>
+    <div class="price">
+      <label>Desde <input type="number" min="0" step="100" [formControl]="minPrice" placeholder="$0" /></label>
+      <label>Hasta <input type="number" min="0" step="100" [formControl]="maxPrice" placeholder="Sin límite" /></label>
+      <button type="button" class="reset" (click)="reset()">Limpiar filtros</button>
+    </div>
+  </div>
+
+  @if (vm$ | async; as vm) {
+    <p class="counter" aria-live="polite">
+      <strong>{{ vm.count }}</strong> de {{ vm.total }} productos encontrados
+    </p>
+
+    @if (vm.count === 0) {
+      <div class="empty">
+        <h2>No encontramos productos con esos filtros</h2>
+        <p>Revisa el nombre, cambia la categoría o amplía el rango de precios.</p>
+        <button type="button" class="reset reset--solid" (click)="reset()">Limpiar filtros</button>
+      </div>
+    } @else {
+      <div class="grid">
+        @for (p of vm.results; track p.id) {
+          <article class="card">
+            <div class="card__media">
+              <img [src]="p.image" [alt]="p.name" loading="lazy" />
+              <span class="card__tag">{{ p.category }}</span>
+            </div>
+            <div class="card__body">
+              <h2>{{ p.name }}</h2>
+              <p>{{ p.description }}</p>
+              <div class="card__foot">
+                <span class="card__price">{{ p.price | currency: 'MXN':'symbol-narrow':'1.0-0' }}</span>
+                <button type="button" class="card__btn">Agregar</button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  }
+</section>

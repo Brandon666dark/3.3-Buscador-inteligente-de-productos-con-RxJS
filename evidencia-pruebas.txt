@@ -1,0 +1,22 @@
+❯ Building...
+✔ Building...
+Application bundle generation complete. [3.688 seconds] - 2026-11-06T16:44:37.244Z
+
+
+ RUN  v5.1.0 /home/claude/product-catalog
+
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P1: muestra los 20 productos y el contador al iniciar 231ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P2: debounceTime espera 300 ms antes de buscar "laptop" 66ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P3: la búsqueda ignora mayúsculas y acentos ("LÁMPARA") 70ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P4: filtra por categoría (Deportes = 5) 52ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P5: filtra por rango de precio ($1,000 – $2,000 = 5) 53ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P6: combina categoría y precio (Electrónica hasta $2,000 = 2) 84ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P7: muestra mensaje cuando no hay coincidencias 57ms
+ ✓  product-catalog  src/app/product-search/product-search.component.spec.ts > ProductSearchComponent (búsqueda y filtrado) > P8: "Limpiar filtros" restaura el catálogo completo 84ms
+ ✓  product-catalog  src/app/app.spec.ts > App > renderiza el catálogo 53ms
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  16:44:37
+   Duration  2.30s (environment 38%, tests 35%, setup 14%, transform 7%, import 5%, worker 1%)
+
